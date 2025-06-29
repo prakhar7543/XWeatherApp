@@ -1,12 +1,17 @@
-import react,{ useState } from 'react'
 
 import './App.css'
+import Search from './searchInput'
+// import WeatherCards from './cards'
+
 
 function App() {
  
 
   return (
-  <div></div>
+  <div>
+    <Search />
+    {/* <WeatherCards /> */}
+  </div>
   )
 }
 
