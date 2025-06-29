@@ -7,11 +7,13 @@ export default function Search() {
   let [city, setCity] = useState("");
   let [weatherData, setWeatherData] = useState([]);
   let [displayCards, setDisplayCards] = useState(false);
+  let [loading, setLoading] = useState(false);
 
   let fetchData = async () => {
     let url = "https://api.weatherapi.com/v1/current.json";
     if (city) {
       try {
+        setLoading(true);
         let res = await axios.get(url, {
           params: {
             Key: "c9b35781c79e4c8994c143815252906",
@@ -25,6 +27,9 @@ export default function Search() {
         console.error("error in fetching city data");
         alert("failed to fetch data");
       }
+      finally{
+        setLoading(false);
+    }
     }
   };
 
@@ -54,6 +59,7 @@ export default function Search() {
           />
           <button onClick={handleClick}>Search</button>
         </div>
+        {loading && <p>Loading data...</p>}
         
         {displayCards && (
           <div>{displayCards && <WeatherCards weatherData={weatherData.current} />}</div>
